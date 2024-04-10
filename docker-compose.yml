@@ -1,0 +1,10 @@
+services:
+  app:
+    image: localhost/symfony-openapi-playground
+    build: .
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./:/var/www/app
+    entrypoint: "./docker/entrypoint.sh"
+    ports:
+      - '8000:8000'
