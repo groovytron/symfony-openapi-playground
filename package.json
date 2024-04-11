@@ -1,0 +1,17 @@
+{
+  "name": "symfony-openapi-playground",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "swagger": "swagger-ui-watcher --port=8080 ./doc/api_spec.yaml"
+  },
+  "author": "Julien M'Poy",
+  "license": "MIT",
+  "dependencies": {
+    "swagger-ui-watcher": "^2.1.14"
+  }
+}
