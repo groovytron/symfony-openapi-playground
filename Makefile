@@ -11,7 +11,11 @@ swagger-ui:
 .PHONY:api
 api: ${OPEN_API_BUNDLE}
 
-${OPEN_API_BUNDLE}: doc/api_spec.yaml
+.PHONY:api-clean
+api-clean:
+	rm -rf ${OPEN_API_BUNDLE}
+
+${OPEN_API_BUNDLE}: doc/api_spec.yaml openapi/config.json
 	npm run generate-openapi-bundle \
 	&& rm -rf ${OPEN_API_BUNDLE}/Tests \
 	&& rm -rf ${OPEN_API_BUNDLE}/src \
@@ -24,7 +28,9 @@ ${OPEN_API_BUNDLE}: doc/api_spec.yaml
 	&& rm -rf ${OPEN_API_BUNDLE}/composer.json \
 	&& rm -rf ${OPEN_API_BUNDLE}/git_push.sh \
 	&& rm -rf ${OPEN_API_BUNDLE}/phpunit.xml.dist \
-	&& rm -rf ${OPEN_API_BUNDLE}/pom.xml
+	&& rm -rf ${OPEN_API_BUNDLE}/pom.xml \
+  && find ${OPEN_API_BUNDLE}/Controller -type f -print0 | xargs -0 sed -i 's/\$request->getContentType()/\$request->getContentTypeFormat()/g' \
+	&& vendor/bin/rector process
 
 .PHONY:clean
 clean:

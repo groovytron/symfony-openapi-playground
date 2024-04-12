@@ -10,12 +10,31 @@ servers:
     description: Local development server
 
 paths:
-  /events:
+  /api/events:
+    post:
+      operationId: createEvent
+      summary: Creates an event and returns it
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewEvent'
+      responses:
+        '200':
+          description: A JSON object containing the created event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventListItem"
     get:
       operationId: listEvents
       summary: Returns a list of events.
       tags:
         - Events
+
       responses:
         '200':
           description: A JSON array of events
@@ -29,9 +48,9 @@ paths:
                 next: null
                 previous: null
                 items:
-                  - uuid: "065730d9-5afa-4020-86dc-192d456282f2"
+                  - id: 1
                     name: "My First Event"
-                  - uuid: "ec371083-e541-45b3-8ce2-fac9184be0c5"
+                  - id: 2
                     name: "My Second Event"
 components:
   schemas:
@@ -57,13 +76,26 @@ components:
           items:
             type: object
 
+    NewEvent:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 5
+          maxLength: 50
+          example: "My super event"
+      required:
+        - name
+
     EventListItem:
       type: object
       properties:
-        uuid:
-          type: string
+        id:
+          type: integer
+          example: 1
         name:
           type: string
+          example: "My super event"
 
     EventListPagination:
       allOf:

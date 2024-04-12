@@ -7,7 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "swagger": "swagger-ui-watcher --port=8080 ./doc/api_spec.yaml",
+    "swagger": "swagger-ui-watcher --port=8081 ./doc/api_spec.yaml",
     "generate-openapi-bundle": "openapi-generator-cli generate -g php-symfony -i doc/api_spec.yaml -o src/OpenApiBundle -c openapi/config.json"
   },
   "author": "Julien M'Poy",

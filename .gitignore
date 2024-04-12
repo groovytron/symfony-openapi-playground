@@ -351,3 +351,8 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/node,vim,emacs,visualstudiocode,sublimetext,notepadpp,linux,osx,windows
 
 /src/OpenApiBundle
+/docker/postgresql/data/*
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
