@@ -183,6 +183,9 @@ return [
     // Example setting: `['unknown' => '', 'number' => 'int|float', 'char' => 'string', 'long' => 'int', 'the' => '']`
     'phpdoc_type_mapping' => [],
 
+    // Disabling this may give a small performance boost.
+    'simplify_ast' => false,
+
     // Set to true in order to attempt to detect dead
     // (unreferenced) code. Keep in mind that the
     // results will only be a guess given that classes,
@@ -289,9 +292,15 @@ return [
     //       party code, directories containing that code
     //       should be added to the `directory_list` as well as
     //       to `exclude_analysis_directory_list`.
+    'directory_list' => [
+        'src',
+        // This includes more files than needed,
+        // and tests may have high false positives rates
+        'tests',
+    ],
     'exclude_analysis_directory_list' => [
         'vendor/',
-        'src/OpenApiBundle/',
+        // 'src/OpenApiBundle/',
     ],
 
     // Enable this to enable checks of require/include statements referring to valid paths.
