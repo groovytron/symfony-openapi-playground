@@ -7,11 +7,15 @@
     "doc": "doc"
   },
   "scripts": {
-    "swagger": "swagger-ui-watcher --port=8080 ./doc/api_spec.yaml"
+    "swagger": "swagger-ui-watcher --port=8080 ./doc/api_spec.yaml",
+    "generate-openapi-bundle": "openapi-generator-cli generate -g php-symfony -i doc/api_spec.yaml -o src/OpenApiBundle -c openapi/config.json"
   },
   "author": "Julien M'Poy",
   "license": "MIT",
   "dependencies": {
     "swagger-ui-watcher": "^2.1.14"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.1"
   }
 }

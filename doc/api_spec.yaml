@@ -12,6 +12,7 @@ servers:
 paths:
   /events:
     get:
+      operationId: listEvents
       summary: Returns a list of events.
       tags:
         - Events
@@ -20,7 +21,56 @@ paths:
           description: A JSON array of events
           content:
             application/json:
-              schema: 
-                type: array
-                items: 
-                  type: string
+              schema:
+                $ref: "#/components/schemas/EventListPagination"
+              example:
+                count: 2
+                current: 1
+                next: null
+                previous: null
+                items:
+                  - uuid: "065730d9-5afa-4020-86dc-192d456282f2"
+                    name: "My First Event"
+                  - uuid: "ec371083-e541-45b3-8ce2-fac9184be0c5"
+                    name: "My Second Event"
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 2
+        current:
+          type: integer
+          example: 2
+        next:
+          type: integer
+          nullable: true
+          example: 3
+        previous:
+          type: integer
+          nullable: true
+          example: 1
+        items:
+          type: array
+          items:
+            type: object
+
+    EventListItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+
+    EventListPagination:
+      allOf:
+        - $ref: "#/components/schemas/Pagination"
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/EventListItem"
