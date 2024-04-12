@@ -1,0 +1,7 @@
+docker/postgresql/data
+.phan
+migrations
+public
+src
+var
+vendor

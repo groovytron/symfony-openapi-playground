@@ -1,9 +1,9 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
 
 OpenAPIBundle:
   resource: "@OpenAPIServerBundle/Resources/config/routing.yaml"
-  prefix:   /
+  prefix: /

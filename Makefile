@@ -1,7 +1,11 @@
 OPEN_API_BUNDLE=src/OpenApiBundle
+POSTGRESQL_DIR=docker/postgresql/data
+
+${POSTGRESQL_DIR}:
+	mkdir -p $@
 
 .PHONY:start
-start:
+start: ${POSTGRESQL_DIR}
 	PODMAN_USERNS=keep-id podman-compose up
 
 .PHONY:swagger-ui
@@ -39,3 +43,9 @@ clean:
 .PHONY:jumpin
 jumpin:
 	PODMAN_USERNS=keep-id podman-compose exec app /bin/bash
+
+.PHONY:format
+format:
+	PODMAN_USERNS=keep-id podman-compose exec app ./vendor/bin/php-cs-fixer fix \
+	&& npm run format
+

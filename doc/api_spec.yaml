@@ -21,9 +21,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewEvent'
+              $ref: "#/components/schemas/NewEvent"
       responses:
-        '200':
+        "200":
           description: A JSON object containing the created event
           content:
             application/json:
@@ -36,7 +36,7 @@ paths:
         - Events
 
       responses:
-        '200':
+        "200":
           description: A JSON array of events
           content:
             application/json:

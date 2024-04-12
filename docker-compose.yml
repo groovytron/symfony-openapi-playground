@@ -7,7 +7,7 @@ services:
       - ./:/var/www/app
     entrypoint: "./docker/php/entrypoint.sh"
     ports:
-      - '8000:8000'
+      - "8000:8000"
 
   postgresql:
     image: docker.io/postgres:16
@@ -26,7 +26,7 @@ services:
   adminer:
     image: docker.io/adminer:4.8.1
     ports:
-      - '8080:8080'
+      - "8080:8080"
     environment:
       ADMINER_DESIGN: nette
       ADMINER_DEFAULT_SERVER: postgresql
