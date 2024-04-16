@@ -8,7 +8,7 @@ $finder = (new PhpCsFixer\Finder())
     ])
     ->exclude([
         'var',
-        'App\OpenApiBundle',
+        'src/OpenApiBundle',
     ])
 ;
 
