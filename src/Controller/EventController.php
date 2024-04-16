@@ -41,7 +41,7 @@ class EventController extends EventsController implements EventsApiInterface
         $events = $this->eventRepository->findAll();
 
         $pagination = new ApiPagination(
-            $count, 2, 3, 1, $events
+            $count, 1, null, null, $events
         );
 
         return $pagination;
