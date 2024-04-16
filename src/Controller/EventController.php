@@ -9,11 +9,13 @@ use App\OpenApiBundle\Model\NewEvent;
 use App\Pagination\ApiPagination;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /** @phan-suppress PhanUnreferencedClass PhanUnreferencedPublicMethod */
 class EventController extends EventsController implements EventsApiInterface
 {
-    public function __construct(private EntityManagerInterface $entityManager, private EventRepository $eventRepository)
+    public function __construct(private EntityManagerInterface $entityManager, private EventRepository $eventRepository, private TokenStorageInterface $tokenStorageInterface, private JWTTokenManagerInterface $jwtManager)
     {
     }
 
@@ -45,5 +47,9 @@ class EventController extends EventsController implements EventsApiInterface
         );
 
         return $pagination;
+    }
+
+    public function setbearerAuth(?string $value): void
+    {
     }
 }

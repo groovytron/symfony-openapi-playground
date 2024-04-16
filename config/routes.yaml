@@ -7,3 +7,6 @@ controllers:
 OpenAPIBundle:
   resource: "@OpenAPIServerBundle/Resources/config/routing.yaml"
   prefix: /
+
+api_login:
+  path: /api/login

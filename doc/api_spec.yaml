@@ -10,6 +10,25 @@ servers:
     description: Local development server
 
 paths:
+  /api/login:
+    post:
+      operationId: login
+      summary: Logs the user in and returns the token
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: A JSON object containing the created event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
   /api/events:
     post:
       operationId: createEvent
@@ -52,8 +71,43 @@ paths:
                     name: "My First Event"
                   - id: 2
                     name: "My Second Event"
+security:
+  - bearerAuth: []
+
 components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 5
+          maxLength: 50
+          example: "admin"
+        password:
+          type: string
+          minLength: 5
+          maxLength: 50
+          example: "secret"
+      required:
+        - name
+        - password
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          minLength: 5
+          maxLength: 50
+          example: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXUyJ9.eyJleHAiOjE0MzQ3Mjc1MzYsInVzZXJuYW1lIjoia29ybGVvbiIsImlhdCI6IjE0MzQ2NDExMzYifQ.nh0L_wuJy6ZKIQWh6OrW5hdLkviTs1_bau2GqYdDCB0Yqy_RplkFghsuqMpsFls8zKEErdX5TYCOR7muX0aQvQxGQ4mpBkvMDhJ4-pE4ct2obeMTr_s4X8nC00rBYPofrOONUOR4utbzvbd4d2xT_tj4TdR_0tsr91Y7VskCRFnoXAnNT-qQb7ci7HIBTbutb9zVStOFejrb4aLbr7Fl4byeIEYgp2Gd7gY"
+
     Pagination:
       type: object
       properties:
