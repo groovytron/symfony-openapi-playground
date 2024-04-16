@@ -96,7 +96,7 @@ components:
           maxLength: 50
           example: "secret"
       required:
-        - name
+        - username
         - password
 
     LoginResponse:
