@@ -7,6 +7,7 @@
 - <https://www.tutorialworks.com/podman-rootless-volumes/>
 - <https://www.redhat.com/sysadmin/rootless-podman-user-namespace-modes>
 - <https://github.com/containers/podman-compose/issues/166>
+- Fix postgresql permission issue: <https://stackoverflow.com/a/60194261>
 
 ## OpenAPI Generator to simplify implementation
 
