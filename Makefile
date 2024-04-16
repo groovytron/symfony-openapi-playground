@@ -1,11 +1,7 @@
 OPEN_API_BUNDLE=src/OpenApiBundle
-POSTGRESQL_DIR=docker/postgresql/data
-
-${POSTGRESQL_DIR}:
-	mkdir -p $@
 
 .PHONY:start
-start: ${POSTGRESQL_DIR}
+start:
 	PODMAN_USERNS=keep-id podman-compose up
 
 .PHONY:swagger-ui

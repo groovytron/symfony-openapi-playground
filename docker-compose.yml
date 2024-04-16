@@ -11,6 +11,9 @@ services:
 
   postgresql:
     image: docker.io/postgres:16
+    ports:
+      - "5432:5432"
+    user: "postgres:postgres"
     environment:
       POSTGRES_DB: app
       POSTGRES_PASSWORD: secret
@@ -20,8 +23,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 60s
-    volumes:
-      - ./docker/postgresql/data:/var/lib/postgresql/data:rw
+    # volumes:
+    #   - ./docker/postgresql/data:/data
 
   adminer:
     image: docker.io/adminer:4.8.1
