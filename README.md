@@ -1,5 +1,44 @@
 # Symfony OpenAPI Playground
 
+## Development information
+
+### Local development
+
+#### Required softwares
+
+- Make
+- PHP (8.3)
+- composer
+- Java (dependency from `@openapitools/openapi-generator-cli`)
+- Node
+- podman-composea
+
+#### Start the stack locally
+
+1. Run `composer install`.
+2. Run `npm install`.
+3. Run `make api` to generate API's interface's code.
+4. Run `make start` to start the containers.
+
+You then need to jump into the PHP container by running `make jumpin`.
+Once in the container you can then run the following commands:
+
+1. Run `php bin/console lexik:jwt:generate-keypair` to generate SSL keys used to
+   generate JSON Web Tokens.
+2. Run `php bin/console doctrine:migrations:migrate` to migrate the database.
+3. Run `php bin/console app:create-user <username> <password>` to create a user.
+
+Once everything is setup you can access your containers on the following
+adresses:
+
+- API: <http://localhost:8000>
+- Adminer: <http://localhost:8080>
+- PostgreSQL: <localhost:5432>
+
+If you are working on the OpenAPI specification or want to easily test the API,
+you can run `make swagger-ui` to start Swagger UI on <http://localhost:8081>.
+
+
 ## Encountered Issues
 
 ## Podman usage and volumes mounting issue
